@@ -1,0 +1,6 @@
+<button
+  class="bg-blue-400 hover:bg-blue-800 px-4 py-2 rounded-md text-white uppercase tracking-wider font-semibold text-sm"
+  [type]="type" [disabled]="disabled">
+  {{ !loading ? text : '' }}
+  <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+</button>

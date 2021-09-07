@@ -1,0 +1,11 @@
+<div class="flex space-between items-center">
+  <a routerLink="/recipes/new"
+    class="mr-4 bg-green-400 hover:bg-green-800 px-4 py-2 rounded-md text-white uppercase tracking-wider font-semibold text-sm">New
+    Recipe</a>
+  <app-async-button text="Save List" type="button" (click)="onSaveList()" [loading]="isLoading" [disabled]="isLoading">
+  </app-async-button>
+</div>
+
+<hr class="shadow-sm h-1 bg-white my-4">
+
+<app-recipe *ngFor="let recipeEl of recipes; let i = index" [recipe]="recipeEl" [index]="i.toString()"></app-recipe>

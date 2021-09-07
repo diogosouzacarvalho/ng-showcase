@@ -1,0 +1,44 @@
+<div class="p-4 space-y-4">
+
+  <img [src]="recipe.imagePath" alt="{{ recipe.name }}" class="h-60 w-full object-cover object-center rounded-lg shadow-md">
+
+  <h1 class="font-light text-5xl">{{ recipe.name }}</h1>
+
+  <div class="flex space-between w-100 items-center">
+    <div class="space-x-2">
+      <span class="px-2 py-1 text-gray-800 text-xs font-bold tracking-widest bg-gray-100 uppercase">{{ recipe.duration }}</span>
+      <span class="px-2 py-1 text-gray-800 text-xs font-bold tracking-widest bg-gray-100 uppercase">{{ recipe.difficulty }}</span>
+      <span class="px-2 py-1 text-gray-800 text-xs font-bold tracking-widest bg-gray-100 uppercase">{{ recipe.publicationDate | date: 'dd/MM/yyyy' }}</span>
+    </div>
+    
+    <div class="space-x-2 flex-1 text-right">
+      <button type="button" class="px-2 py-1 text-white text-sm uppercase font-bold tracking-widest bg-green-700 rounded-md" (click)="onEdit()">Edit</button>
+      <button type="button" class="px-2 py-1 text-white text-sm uppercase font-bold tracking-widest bg-red-700 rounded-md" (click)="onDelete()">Delete</button>
+    </div>
+  </div>
+  
+  <p class="border-gray-100 border-t-2 border-b-2 py-2">
+    {{ recipe.description }}
+  </p>
+
+  <!-- <button class="px-2 py-1 text-white text-sm uppercase font-bold tracking-widest bg-blue-700 rounded-md" type="button" (click)="onAddToShoppingList()">Send ingredients to shopping list</button> -->
+  
+  <p class="text-gray-900 font-medium">Ingredients: </p>
+  
+  <ul class="mt-2 p-2 bg-gray-100">
+    <li class="bg-gray-50 px-2 py-1 mb-2" *ngFor="let ingredient of recipe.ingredients">
+      <span class="mr-2 font-semibold">{{ ingredient.amount }}</span> {{ ingredient.name }}
+    </li>
+  </ul>
+
+  <div class="border-gray-100 border-t-2 py-2">
+    <p class="text-gray-900 font-medium">Steps: </p>
+
+    <ul class="mt-2 p-2 bg-gray-100">
+      <li class="bg-gray-50 px-2 py-1 mb-2" *ngFor="let step of recipe.steps">
+        <span class="mr-2 font-semibold">{{ step.number }}</span> {{ step.text }}
+      </li>
+    </ul>
+  </div>
+
+</div>

@@ -1,0 +1,94 @@
+<div class="">
+  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+
+    <div class="flex bg-gray-100 pb-4 space-x-4">
+      <h4 *ngIf="editMode" class="flex-1 text-xl font-light">You are editing: <span
+          class="font-semibold tracking-wider">{{ recipeForm.value.name }}</span></h4>
+      <h4 *ngIf="!editMode" class="flex-1 text-xl font-light">Insert new recipe data</h4>
+      <button type="submit"
+        class="bg-green-400 hover:bg-green-800 px-4 py-2 rounded-md text-white uppercase tracking-wider font-semibold text-sm"
+        [disabled]="!recipeForm.valid">Save</button>
+      <button type="button"
+        class="bg-red-400 hover:bg-red-800 px-4 py-2 rounded-md text-white uppercase tracking-wider font-semibold text-sm"
+        (click)="onCancel()">Cancel</button>
+    </div>
+
+    <hr class="shadow-sm h-1 bg-white mb-4">
+
+    <div class="px-4">
+      <div class="flex flex-col mb-4">
+        <label class="text-gray-800 font-semibold text-sm" for="name">Name</label>
+        <input type="text" id="name" formControlName="name" class="bg-transparent border-gray-50 border-b-2">
+      </div>
+
+      <div class="grid grid-cols-5 space-x-2">
+        <div class="col-span-3 flex flex-col mb-4 mt-auto">
+          <label class="text-gray-800 font-semibold text-sm" for="imagePath">Image URL</label>
+          <input type="text" id="imagePath" formControlName="imagePath" class="bg-transparent border-gray-50 border-b-2" #imagePath>
+        </div>
+        <div class="col-span-2 h-32 bg-gray-200">
+          <img *ngIf="imagePath.value" [src]="imagePath.value" alt="" class="object-cover object-center h-32 w-full">
+        </div>
+      </div>
+
+      <div class="flex flex-col mb-4">
+        <label class="text-gray-800 font-semibold text-sm" for="description">Description</label>
+        <textarea type="text" id="description" formControlName="description" class="bg-transparent border-gray-50 border-b-2" rows="6"></textarea>
+      </div>
+
+      <div class="grid grid-cols-2 space-x-2">
+        <div class="grid grid-rows-3 mb-4">
+          <label class="text-gray-800 font-semibold text-sm" for="difficulty">Difficulty</label>
+          <p class="text-xs">Allowed: easy, medium, hard</p>
+          <input type="text" id="difficulty" formControlName="difficulty" class="bg-transparent border-gray-50 border-b-2">
+        </div>
+        <div class="grid grid-rows-2 mb-4 flex-1">
+          <label class="text-gray-800 font-semibold text-sm" for="duration">Duration</label>
+          <input type="text" id="duration" formControlName="duration" class="bg-transparent border-gray-50 border-b-2">
+        </div>
+      </div>
+
+      <div class="mb-4 pb-2 border-gray-50 border-b-2" formArrayName="ingredients">
+        <div class="flex">
+          <p class="flex-1">Ingredients: </p>
+          <button class="bg-green-400 hover:bg-green-800 text-white text-sm rounded-md p-2 tracking-wider font-semibold uppercase" type="button" (click)="onAddIngredient()">Add</button>
+        </div>
+
+        <div class="flex space-x-2 items-center" *ngFor="let ingredientCtrl of ingredientsControls; let i = index" [formGroupName]="i">
+          <div class="flex-1 flex flex-col mb-4">
+            <label class="text-gray-800 font-semibold text-sm" for="name">Name</label>
+            <input type="text" class="bg-transparent border-gray-50 border-b-2" formControlName="name">
+          </div>
+          <div class="flex flex-col mb-4 w-16">
+            <label class="text-gray-800 font-semibold text-sm" for="amount">Amount</label>
+            <input type="number" formControlName="amount" class="bg-transparent border-gray-50 border-b-2">
+          </div>
+          <div class="">
+            <button class="w-8 bg-red-400 hover:bg-red-800 text-white text-sm rounded-md p-2 tracking-wider font-semibold uppercase" type="button" (click)="onDeleteIngredient(i)">X</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-2" formArrayName="steps">
+        <div class="flex">
+          <p class="flex-1">Steps: </p>
+          <button class="bg-green-400 hover:bg-green-800 text-white text-sm rounded-md p-2 tracking-wider font-semibold uppercase" type="button" (click)="onAddStep()">Add</button>
+        </div>
+
+        <div class="flex space-x-2 items-center" *ngFor="let stepCtrl of stepsControls; let i = index" [formGroupName]="i">
+          <div class="flex flex-col mb-4 w-16">
+            <label class="text-gray-800 font-semibold text-sm" for="number">Number</label>
+            <input type="number" class="bg-transparent border-gray-50 border-b-2" formControlName="number">
+          </div>
+          <div class="flex-1 flex flex-col mb-4">
+            <label class="text-gray-800 font-semibold text-sm" for="text">Text</label>
+            <input type="text" formControlName="text" class="bg-transparent border-gray-50 border-b-2">
+          </div>
+          <div class="">
+            <button class="w-8 bg-red-400 hover:bg-red-800 text-white text-sm rounded-md p-2 tracking-wider font-semibold uppercase" type="button" (click)="onDeleteStep(i)">X</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

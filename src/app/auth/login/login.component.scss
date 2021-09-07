@@ -1,0 +1,5 @@
+@layer components {
+  .ng-invalid.ng-touched {
+    @apply border-red-400;
+  }
+}

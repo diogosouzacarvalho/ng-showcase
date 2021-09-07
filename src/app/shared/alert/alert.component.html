@@ -1,0 +1,12 @@
+<div class="fixed inset-0 w-screen h-screen bg-white bg-opacity-70 z-30" (click)="onClose()"
+  *ngIf="message">
+</div>
+
+<div *ngIf="message"
+  class="w-4/5 max-w-lg bg-gray-100 border-2 rounded-lg shadow-lg p-6 flex flex-col z-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+  <h2 class="text-2xl font-light mb-5 border-b-2 border-gray-50">An error has occurred:</h2>
+  <code class="block text-md font-semibold text-red-800 mb-4">{{ message }}</code>
+  <button type="button"
+    class="px-2 py-1 text-sm uppercase tracking-wider bg-blue-700 text-white font-semibold rounded-sm ml-auto"
+    (click)="onClose()">Close</button>
+</div>

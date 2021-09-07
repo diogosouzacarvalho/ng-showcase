@@ -1,0 +1,26 @@
+<app-landing>
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+    <div class="mb-4">
+      <label for="email" class="block font-semibold">E-mail:</label>
+      <input class="bg-transparent border-gray-50 border-b-2 w-full" type="email" id="email" ngModel name="email"
+        required email>
+    </div>
+    <div class="mb-4">
+      <label for="password" class="block font-semibold">Password:</label>
+      <input class="bg-transparent border-gray-50 border-b-2 w-full" type="password" id="password" ngModel
+        name="password" required minlength="6">
+    </div>
+    <div class="relative my-6">
+      <app-async-button type="submit" text="Login" [disabled]="!loginForm.valid || isLoading" [loading]="isLoading">
+      </app-async-button>
+    </div>
+    <div>
+      <p>
+        Do not have an account?
+        <span class="font-semibold">
+          <a routerLink="/auth/register">Register!</a>
+        </span>
+      </p>
+    </div>
+  </form>
+</app-landing>

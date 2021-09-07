@@ -1,0 +1,6 @@
+@layer components {
+  .form-container {
+    @apply self-center bg-gray-200 p-5 rounded shadow-xl;
+    min-width: 350px;
+  }
+}

@@ -1,0 +1,8 @@
+<header class="bg-gray-200" *ngIf="isAuthenticated">
+  <nav class="container mx-auto flex content-between">
+    <a class="link" routerLink="/recipes" routerLinkActive="link-active">Recipes</a>
+    <a class="link" routerLink="/pantry" routerLinkActive="link-active">Pantry</a>
+    <a class="link" routerLink="/me" routerLinkActive="link-active">Profile</a>
+    <a class="link" style="cursor: pointer;" (click)="onLogout()">Logout</a>
+  </nav>
+</header>
